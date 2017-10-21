@@ -27,26 +27,34 @@ function saveRefreshInterval(url, interval) {
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((url) => {
     var minitues = document.getElementById('minitues');
-    var start = document.getElementById('start');
+    var control = document.getElementById('control');
+    var control_flg = true;
+    var timer;
 
      getSavedRefreshInterval(url, (savedInterval) => {
       if (savedInterval) {
         minitues.value = savedInterval;
-        reloadTab(minitues.value);
       }
     });
 
-    start.addEventListener('click',() => {
-      if(minitues.value){
-        saveRefreshInterval(url, minitues.value);
-        reloadTab(minitues.value);
+    control.addEventListener('click',() => {
+      if(control_flg){
+        if(minitues.value != ""){
+          saveRefreshInterval(url, minitues.value);
+          clearInterval(timer);
+          timer = setInterval(function(){chrome.tabs.reload();},Number(minitues.value)*1000*60)
+          control_flg=false;
+          control.innerHTML = "Stop"
+       }else{
+          console.assert(minitues, "input interval");
+        }
       }else{
-        console.assert(minitues, "input interval");
+        minitues.value = "";
+        saveRefreshInterval(url, "");
+        clearInterval(timer);
+        control_flg=true;
+        control.innerHTML= "Start";
       }
     });
   });
 });
-
-function reloadTab(interval){
-  setInterval(function(){chrome.tabs.reload();}, Number(interval)*1000*60);
-}
