@@ -1,0 +1,28 @@
+{
+	// Required
+	"manifest_version": 2,
+	"name": "Chrome Refresh Tab",
+	"version": "0.1",
+
+	// Recommended
+	"description": "Refreshing the Tab",
+	"icons":{
+		"16": "./images/icon_on_16.png",
+		"48": "./images/icon_on_48.png",
+		"128": "./images/icon_on_128.png"	
+	},
+
+	"browser_action":{
+		"default_icon":	"./images/icon_off.png",
+		"default_title": "Refresing the Tab",
+		"default_popup": "./html/popup.html"
+	},
+
+	// Optional
+	"author": "Hiyo-ac",
+
+	"permissions": [
+		"activeTab",
+		"storage"
+	]
+}

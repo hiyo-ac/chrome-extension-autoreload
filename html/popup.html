@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style type="text/css">
+      body {
+        margin: 10px;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 15px;
+      }
+
+      #container {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <script src="/js/refresh.js"></script>
+  </head>
+
+  <body>
+    <h1>Refresh this tab every...minitues</h1>
+    <div id="container">
+      <input type="number" name="minitues" size="3" max="999" id="minitues">
+      <button type=button id="start">Start</button>
+    </div>
+  </body>
+</html>
